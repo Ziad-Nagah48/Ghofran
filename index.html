@@ -775,6 +775,26 @@
         box-shadow: 0 6px 20px rgba(220, 39, 67, 0.4);
         opacity: 0.92;
       }
+      .results-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding: 0.45rem 1rem;
+        border-radius: 2rem;
+        background: linear-gradient(135deg, var(--terracotta), var(--gold));
+        color: white;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s;
+        letter-spacing: 0.03em;
+      }
+      .results-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(168, 92, 69, 0.4);
+        opacity: 0.92;
+      }
 
       footer {
         text-align: center;
@@ -1315,6 +1335,109 @@
         .gallery-stats { gap: 0.8rem; }
         .gstat { padding: 0.9rem 1rem; }
       }
+
+      /* ─── ADS RESULTS GALLERY ─── */
+      .ads-brand-block {
+        margin-bottom: 3.5rem;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(196, 131, 106, 0.12);
+      }
+      .ads-brand-block:last-child {
+        border-bottom: none;
+      }
+      .ads-brand-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+      }
+      .ads-brand-name {
+        font-family: "Cairo", serif;
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: var(--deep);
+        margin-bottom: 0.3rem;
+      }
+      .ads-brand-tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        color: var(--gold);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        background: var(--about-value-bg);
+        padding: 0.25rem 0.8rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(201, 169, 110, 0.3);
+      }
+      .ads-visit-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 1.2rem;
+        border-radius: 2rem;
+        background: rgba(196, 131, 106, 0.12);
+        border: 1px solid rgba(196, 131, 106, 0.3);
+        color: var(--terracotta);
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.25s;
+        white-space: nowrap;
+      }
+      .ads-visit-btn:hover {
+        background: rgba(196, 131, 106, 0.22);
+        transform: translateY(-2px);
+      }
+      .ads-campaign {
+        margin-bottom: 1.5rem;
+      }
+      .ads-campaign:last-child {
+        margin-bottom: 0;
+      }
+      .ads-stat-row {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin-bottom: 0.9rem;
+      }
+      .ads-stat-pill {
+        background: var(--stat-bg);
+        border: 1px solid rgba(196, 131, 106, 0.15);
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .ads-stat-pill b {
+        color: var(--terracotta);
+        font-weight: 800;
+      }
+      .ads-shot {
+        border-radius: 1rem;
+        overflow: hidden;
+        border: 1px solid rgba(196, 131, 106, 0.15);
+        max-width: 560px;
+        box-shadow: 0 10px 30px rgba(44, 24, 16, 0.06);
+      }
+      .ads-shot img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .ads-summary-note {
+        text-align: center;
+        color: var(--text-light);
+        font-size: 0.85rem;
+        max-width: 650px;
+        margin: 0 auto 3rem;
+        line-height: 1.9;
+      }
+      @media (max-width: 600px) {
+        .ads-brand-head { flex-direction: column; }
+      }
     </style>
   </head>
   <body>
@@ -1631,6 +1754,13 @@
                 صناعة المحتوى الاحترافي والإبداعي
               </li>
             </ul>
+            <button
+              onclick="openAdsGallery()"
+              class="results-link"
+              style="border:none;cursor:pointer;font-family:'Cairo',sans-serif;"
+              data-ar="📊 شوفي الصفحات والنتائج"
+              data-en="📊 See Pages & Results"
+            >📊 شوفي الصفحات والنتائج</button>
           </div>
           <div class="exp-card reveal">
             <span class="exp-icon">🎯</span>
@@ -1656,6 +1786,13 @@
                 الوصول للفئة المستهدفة بأفضل كفاءة
               </li>
             </ul>
+            <button
+              onclick="openAdsGallery()"
+              class="results-link"
+              style="border:none;cursor:pointer;font-family:'Cairo',sans-serif;"
+              data-ar="📊 شوفي الصفحات والنتائج"
+              data-en="📊 See Pages & Results"
+            >📊 شوفي الصفحات والنتائج</button>
           </div>
           <div class="exp-card reveal">
             <span class="exp-icon">🧘‍♀️</span>
@@ -2129,6 +2266,188 @@
       </div>
     </div>
 
+    <!-- ─── ADS RESULTS GALLERY PAGE ─── -->
+    <div id="adsGallery" class="gallery-overlay" aria-hidden="true">
+      <div class="gallery-page">
+        <!-- Header -->
+        <div class="gallery-header">
+          <button class="gallery-back" onclick="closeAdsGallery()">
+            <span>←</span>
+            <span data-ar="رجوع" data-en="Back">رجوع</span>
+          </button>
+          <div class="gallery-brand-title">
+            <span class="gallery-candle-icon">🎯</span>
+            <div>
+              <h1 data-ar="نتايج الحملات الإعلانية" data-en="Ad Campaign Results">نتايج الحملات الإعلانية</h1>
+              <p data-ar="صفحات حقيقية اشتغلت عليها كـ Social Media Specialist و Meta Media Buyer" data-en="Real pages I've worked on as a Social Media Specialist & Meta Media Buyer">صفحات حقيقية اشتغلت عليها كـ Social Media Specialist و Meta Media Buyer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Intro -->
+        <div class="gallery-intro reveal-g">
+          <p data-ar="من إدارة الصفحة لتصميم المحتوى لإطلاق الحملة الإعلانية وتحليل أدائها — دي نماذج حقيقية من حسابات عملاء اشتغلت على إعلاناتهم على Meta في قطاعات مختلفة، بالأرقام والنتائج الفعلية."
+             data-en="From managing the page to designing content to launching and analyzing the ad campaign — these are real client accounts I've run Meta ads for across different industries, with actual numbers and results.">
+            من إدارة الصفحة لتصميم المحتوى لإطلاق الحملة الإعلانية وتحليل أدائها — دي نماذج حقيقية من حسابات عملاء اشتغلت على إعلاناتهم على Meta في قطاعات مختلفة، بالأرقام والنتائج الفعلية.
+          </p>
+        </div>
+
+        <!-- Stats strip -->
+        <div class="gallery-stats reveal-g">
+          <div class="gstat">
+            <span class="gstat-num">5</span>
+            <span class="gstat-label" data-ar="براندات مختلفة" data-en="Different Brands">براندات مختلفة</span>
+          </div>
+          <div class="gstat">
+            <span class="gstat-num">7</span>
+            <span class="gstat-label" data-ar="حملات إعلانية" data-en="Ad Campaigns">حملات إعلانية</span>
+          </div>
+          <div class="gstat">
+            <span class="gstat-num">1,353+</span>
+            <span class="gstat-label" data-ar="محادثة تم بدؤها" data-en="Conversations Started">محادثة تم بدؤها</span>
+          </div>
+          <div class="gstat">
+            <span class="gstat-num">1.24</span>
+            <span class="gstat-label" data-ar="أقل تكلفة لكل محادثة (جنيه)" data-en="Lowest Cost per Conversation (EGP)">أقل تكلفة لكل محادثة (جنيه)</span>
+          </div>
+        </div>
+
+        <!-- Brands -->
+        <div class="gallery-section-label reveal-g">
+          <span class="gsec-line"></span>
+          <span data-ar="الصفحات والنتائج" data-en="Pages & Results">الصفحات والنتائج</span>
+          <span class="gsec-line"></span>
+        </div>
+
+        <!-- Yasmina -->
+        <div class="ads-brand-block reveal-g">
+          <div class="ads-brand-head">
+            <div>
+              <div class="ads-brand-name">ياسمينا لانجيري</div>
+              <span class="ads-brand-tag" data-ar="ملابس" data-en="Clothing">ملابس</span>
+            </div>
+            <a href="https://www.facebook.com/yasmina.home.wear.eg" target="_blank" class="ads-visit-btn">
+              <span data-ar="زيارة الصفحة" data-en="Visit Page">زيارة الصفحة</span> ↗
+            </a>
+          </div>
+          <div class="ads-campaign">
+            <div class="ads-stat-row">
+              <span class="ads-stat-pill"><b>228</b> <span data-ar="محادثة" data-en="conversations">محادثة</span></span>
+              <span class="ads-stat-pill"><b>447.87</b> <span data-ar="جنيه إنفاق" data-en="EGP spent">جنيه إنفاق</span></span>
+              <span class="ads-stat-pill"><b>1.96</b> <span data-ar="جنيه / محادثة" data-en="EGP / conversation">جنيه / محادثة</span></span>
+            </div>
+            <div class="ads-shot"><img src="./ad/1.png" alt="نتائج حملة ياسمينا لانجيري"></div>
+          </div>
+        </div>
+
+        <!-- Furniture -->
+        <div class="ads-brand-block reveal-g">
+          <div class="ads-brand-head">
+            <div>
+              <div class="ads-brand-name">مصنع الوكيل للأثاث</div>
+              <span class="ads-brand-tag" data-ar="أثاث" data-en="Furniture">أثاث</span>
+            </div>
+            <a href="https://www.facebook.com/profile.php?id=61557081658013" target="_blank" class="ads-visit-btn">
+              <span data-ar="زيارة الصفحة" data-en="Visit Page">زيارة الصفحة</span> ↗
+            </a>
+          </div>
+          <div class="ads-campaign">
+            <div class="ads-stat-row">
+              <span class="ads-stat-pill"><b>242</b> <span data-ar="محادثة" data-en="conversations">محادثة</span></span>
+              <span class="ads-stat-pill"><b>662.27</b> <span data-ar="جنيه إنفاق" data-en="EGP spent">جنيه إنفاق</span></span>
+              <span class="ads-stat-pill"><b>2.74</b> <span data-ar="جنيه / محادثة" data-en="EGP / conversation">جنيه / محادثة</span></span>
+            </div>
+            <div class="ads-shot"><img src="./ad/اثاث.jpeg" alt="نتائج حملة مصنع الوكيل للأثاث - الحملة الأولى"></div>
+          </div>
+          <div class="ads-campaign">
+            <div class="ads-stat-row">
+              <span class="ads-stat-pill"><b>186</b> <span data-ar="محادثة" data-en="conversations">محادثة</span></span>
+              <span class="ads-stat-pill"><b>657.90</b> <span data-ar="جنيه إنفاق" data-en="EGP spent">جنيه إنفاق</span></span>
+              <span class="ads-stat-pill"><b>3.54</b> <span data-ar="جنيه / محادثة" data-en="EGP / conversation">جنيه / محادثة</span></span>
+            </div>
+            <div class="ads-shot"><img src="./ad/عقارات 2.jpeg" alt="نتائج حملة مصنع الوكيل للأثاث - الحملة الثانية"></div>
+          </div>
+        </div>
+
+        <!-- S-TEN -->
+        <div class="ads-brand-block reveal-g">
+          <div class="ads-brand-head">
+            <div>
+              <div class="ads-brand-name">S-TEN</div>
+              <span class="ads-brand-tag" data-ar="قطع غيار عربيات" data-en="Auto Parts">قطع غيار عربيات</span>
+            </div>
+            <a href="https://www.facebook.com/profile.php?id=61588614472063" target="_blank" class="ads-visit-btn">
+              <span data-ar="زيارة الصفحة" data-en="Visit Page">زيارة الصفحة</span> ↗
+            </a>
+          </div>
+          <div class="ads-campaign">
+            <div class="ads-stat-row">
+              <span class="ads-stat-pill"><b>494</b> <span data-ar="محادثة" data-en="conversations">محادثة</span></span>
+              <span class="ads-stat-pill"><b>614.12</b> <span data-ar="جنيه إنفاق" data-en="EGP spent">جنيه إنفاق</span></span>
+              <span class="ads-stat-pill"><b>1.24</b> <span data-ar="جنيه / محادثة ✦ أفضل نتيجة" data-en="EGP / conversation ✦ Best Result">جنيه / محادثة ✦ أفضل نتيجة</span></span>
+            </div>
+            <div class="ads-shot"><img src="./ad/2.jpeg" alt="نتائج حملة S-TEN"></div>
+          </div>
+        </div>
+
+        <!-- Anas Golf -->
+        <div class="ads-brand-block reveal-g">
+          <div class="ads-brand-head">
+            <div>
+              <div class="ads-brand-name">أنس جولف</div>
+              <span class="ads-brand-tag" data-ar="حملة تفاعل" data-en="Engagement Campaign">حملة تفاعل</span>
+            </div>
+            <a href="https://www.facebook.com/profile.php?id=61554370817333" target="_blank" class="ads-visit-btn">
+              <span data-ar="زيارة الصفحة" data-en="Visit Page">زيارة الصفحة</span> ↗
+            </a>
+          </div>
+          <div class="ads-campaign">
+            <div class="ads-stat-row">
+              <span class="ads-stat-pill"><b>382</b> <span data-ar="تفاعل مع المنشور" data-en="post interactions">تفاعل مع المنشور</span></span>
+              <span class="ads-stat-pill"><b>132.90</b> <span data-ar="جنيه إنفاق" data-en="EGP spent">جنيه إنفاق</span></span>
+              <span class="ads-stat-pill"><b>0.35</b> <span data-ar="جنيه / تفاعل" data-en="EGP / interaction">جنيه / تفاعل</span></span>
+            </div>
+            <div class="ads-shot"><img src="./ad/انس.jpeg" alt="نتائج حملة أنس جولف"></div>
+          </div>
+        </div>
+
+        <!-- Realtors -->
+        <div class="ads-brand-block reveal-g">
+          <div class="ads-brand-head">
+            <div>
+              <div class="ads-brand-name">Realtors</div>
+              <span class="ads-brand-tag" data-ar="عقارات" data-en="Real Estate">عقارات</span>
+            </div>
+            <a href="https://www.facebook.com/RealtorsGroupIntegrated" target="_blank" class="ads-visit-btn">
+              <span data-ar="زيارة الصفحة" data-en="Visit Page">زيارة الصفحة</span> ↗
+            </a>
+          </div>
+          <div class="ads-campaign">
+            <div class="ads-stat-row">
+              <span class="ads-stat-pill"><b>132</b> <span data-ar="محادثة" data-en="conversations">محادثة</span></span>
+              <span class="ads-stat-pill"><b>883.82</b> <span data-ar="جنيه إنفاق" data-en="EGP spent">جنيه إنفاق</span></span>
+              <span class="ads-stat-pill"><b>6.70</b> <span data-ar="جنيه / محادثة" data-en="EGP / conversation">جنيه / محادثة</span></span>
+            </div>
+            <div class="ads-shot"><img src="./ad/عقارات.jpeg" alt="نتائج حملة Realtors - الحملة الأولى"></div>
+          </div>
+          <div class="ads-campaign">
+            <div class="ads-stat-row">
+              <span class="ads-stat-pill"><b>71</b> <span data-ar="محادثة" data-en="conversations">محادثة</span></span>
+              <span class="ads-stat-pill"><b>808.13</b> <span data-ar="جنيه إنفاق" data-en="EGP spent">جنيه إنفاق</span></span>
+              <span class="ads-stat-pill"><b>11.38</b> <span data-ar="جنيه / محادثة" data-en="EGP / conversation">جنيه / محادثة</span></span>
+            </div>
+            <div class="ads-shot"><img src="./ad/عقارات 2.jpeg" alt="نتائج حملة Realtors - الحملة الثانية"></div>
+          </div>
+        </div>
+
+        <p class="ads-summary-note reveal-g" data-ar="كل الأرقام دي مأخوذة مباشرة من لوحة تحكم Meta Ads لكل صفحة، وبتعكس نتائج فعلية من حملات اتنفذت وحققت أهدافها."
+           data-en="All figures are taken directly from the Meta Ads dashboard for each page, reflecting real results from campaigns that ran and met their goals.">
+          كل الأرقام دي مأخوذة مباشرة من لوحة تحكم Meta Ads لكل صفحة، وبتعكس نتائج فعلية من حملات اتنفذت وحققت أهدافها.
+        </p>
+
+      </div>
+    </div>
+
     <script>
       // ─── THEME TOGGLE ───
       let isDark = false;
@@ -2393,9 +2712,36 @@
 
       // Close on Escape key
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'Escape') {
+          closeGallery();
+          closeAdsGallery();
+        }
       });
 
+      // ─── ADS RESULTS GALLERY ───
+      function openAdsGallery() {
+        const overlay = document.getElementById('adsGallery');
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+          const items = overlay.querySelectorAll('.reveal-g');
+          items.forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 80);
+          });
+        }, 80);
+      }
+
+      function closeAdsGallery() {
+        const overlay = document.getElementById('adsGallery');
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          overlay.querySelectorAll('.reveal-g').forEach(el => el.classList.remove('visible'));
+          overlay.scrollTop = 0;
+        }, 500);
+      }
     </script>
   </body>
 </html>
